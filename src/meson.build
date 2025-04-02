@@ -1,6 +1,8 @@
 sources = [
     'Application.vala',
     'Views/MainWindow.vala',
+    'Views/Sidebar.vala',
+    'Views/SidebarItem.vala'
 ]
 
 executable(

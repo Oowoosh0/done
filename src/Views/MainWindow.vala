@@ -12,4 +12,19 @@ public class Done.Views.MainWindow : Gtk.ApplicationWindow {
             height_request: 500
         );
     }
+
+    construct {
+        var sidebar = new Sidebar ();
+        var main_content = new Gtk.Stack ();
+
+        var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL) {
+            start_child = sidebar,
+            end_child = main_content,
+            resize_start_child = false,
+            shrink_end_child = false,
+            shrink_start_child = false
+        };
+
+        child = paned;
+    }
 }
