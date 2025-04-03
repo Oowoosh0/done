@@ -2,7 +2,11 @@ sources = [
     'Application.vala',
     'Views/MainWindow.vala',
     'Views/Sidebar.vala',
-    'Views/SidebarItem.vala'
+    'Views/SidebarItem.vala',
+    'Views/TaskRow.vala',
+#    'Views/TaskJournalMenu.vala',
+    'Models/Task.vala',
+#    'Models/TaskJournal.vala'
 ]
 
 executable(

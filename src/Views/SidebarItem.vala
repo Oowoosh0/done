@@ -3,7 +3,7 @@
  * SPDX-FileCopyrightText: 2025 contributors to https://github.com/Oowoosh0/done
  */
 
-public class Done.Views.SidebarItem : Gtk.Widget {
+public class Done.Views.SidebarItem : Gtk.Box {
     public string title { get; construct; }
     public Gtk.Widget child_item { get; construct; }
 
@@ -15,14 +15,14 @@ public class Done.Views.SidebarItem : Gtk.Widget {
     }
 
     construct {
-        layout_manager = new Gtk.BoxLayout (Gtk.Orientation.VERTICAL);
+        orientation = Gtk.Orientation.VERTICAL;
 
         var title_label = new Gtk.Label (title);
-        title_label.set_parent (this);
+        append (title_label);
 
         var revealer = new Gtk.Revealer () {
             child = child_item
         };
-        revealer.set_parent (this);
+        append (revealer);
     }
 }

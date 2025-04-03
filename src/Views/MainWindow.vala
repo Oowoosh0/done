@@ -15,7 +15,32 @@ public class Done.Views.MainWindow : Gtk.ApplicationWindow {
 
     construct {
         var sidebar = new Sidebar ();
+
+        var task_list = new ListStore (typeof (Models.Task));
+        task_list.append (new Models.Task (1, "test task 1"));
+        task_list.append (new Models.Task (1, "test task 2"));
+
+        var selection_model = new Gtk.SingleSelection (task_list);
+
+        var tasklist_factory = new Gtk.SignalListItemFactory ();
+        tasklist_factory.setup.connect ((obj) => {
+            var list_item = (Gtk.ListItem) obj;
+            list_item.child = new TaskRow ();
+        });
+
+        tasklist_factory.bind.connect ((obj) => {
+
+        });
+
+        var task_listview = new Gtk.ListView (selection_model, tasklist_factory) {
+            single_click_activate = true,
+            show_separators = true,
+            hexpand = true,
+            vexpand = true
+        };
+
         var main_content = new Gtk.Stack ();
+        main_content.add_child (task_listview);
 
         var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL) {
             start_child = sidebar,
